@@ -54,7 +54,7 @@ public class mainSystem {
         }
         return null;
     }
-    
+
     public static Boolean acountLogin(String username, String password) {
         for (account a : listOfAccounts) {
             if ((a.getCustomerUsername()).equals(username) && a.getCustomerPassWord().equals(password)) {
@@ -196,11 +196,14 @@ public class mainSystem {
         String phrase;
         String accType = "Guest";
         String itemrentSize;
-        String ItemList;
+        String ItemList ="";
          if(accIn.getCustomerListofRentals()== null){
             itemrentSize="0";
         } else{
             itemrentSize=Integer.toString(accIn.getCustomerListofRentals().size());
+            for(int i=0;i<accIn.getCustomerListofRentals().size();i++){
+                ItemList = ItemList+"/n"+accIn.getCustomerListofRentals().get(i);
+            }
         }
         if (accIn instanceof guest) {
             accType = "Guest";
@@ -211,7 +214,7 @@ public class mainSystem {
         }
         phrase = accIn.getCustomerID() + "," + accIn.getCustomerFullname() + "," + accIn.getCustomerAddress() + ","
                 + Integer.toString(accIn.getCustomerPhone()) + "," + itemrentSize + ","
-                + accType + "," + accIn.getCustomerUsername() + "," + accIn.getCustomerPassWord();
+                + accType + "," + accIn.getCustomerUsername() + "," + accIn.getCustomerPassWord()+ItemList;
         try {
             FileWriter fw = new FileWriter(CustomerFilePath,true);
             fw.write("\n" +phrase);
