@@ -15,12 +15,12 @@ import geniemoviesandgames.backend.mainSystem;
  */
 public class App extends Application {
 
-    private static Scene scene;
-
+    protected static Scene scene;
+    protected static Stage oldStage;
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"));
-        
+        oldStage = stage;
         stage.setScene(scene);
         stage.setTitle("genie movies and games");
         stage.show();
