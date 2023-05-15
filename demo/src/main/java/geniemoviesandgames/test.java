@@ -21,7 +21,7 @@ public class test {
         } catch (Exception e) {
             // TODO: handle exception
         }
-        System.out.println(numList.size());
+        System.out.println(numList);
 
     }
 }
