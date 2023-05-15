@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class Switchingscence extends App {
 
