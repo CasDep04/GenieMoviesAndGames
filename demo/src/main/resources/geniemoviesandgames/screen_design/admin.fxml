@@ -12,7 +12,7 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <ScrollPane layoutX="4.0" layoutY="46.0" prefHeight="272.0" prefWidth="593.0" />
+      <ScrollPane fx:id="infoScrollPane" layoutX="4.0" layoutY="46.0" prefHeight="272.0" prefWidth="593.0" />
       <Text layoutX="244.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Admin">
          <font>
             <Font size="15.0" />
