@@ -63,7 +63,7 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Button layoutX="152.0" layoutY="274.0" mnemonicParsing="false" onAction="#switchToMenu" text="Go back">
+            <Button fx:id="goBackButton" layoutX="152.0" layoutY="274.0" mnemonicParsing="false" onAction="#goBackAction" text="Go back">
                <font>
                   <Font size="15.0" />
                </font>
@@ -78,6 +78,11 @@
                   <Font size="15.0" />
                </font>
             </Button>
+            <Text fx:id="warningText" layoutX="150.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hello">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

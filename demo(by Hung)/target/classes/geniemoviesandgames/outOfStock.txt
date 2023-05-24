@@ -1,4 +1,0 @@
-I034-1997,Alpha Dog,Record,2-day,0,1.99,Comedy
-I002-1988,White Castle,Record,2-day,0,0.99,Horror
-I006-2013,Halloween,DVD,2-day,0,0.99,Horror
-I001-2002,Medal of Honour 2,Game,2-day,0,4.99

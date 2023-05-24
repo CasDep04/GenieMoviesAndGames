@@ -11,8 +11,8 @@ public class guestAccount extends account {
 
 
     public guestAccount(String ID, String name, String address, String phone, ArrayList<item> rentals,
-            ArrayList<LocalDate> date, String username, String password) {
-        super(ID, name, address, phone, rentals, date, LevelOfServices.Guest, username, password);
+            ArrayList<LocalDate> date, String username, String password,int numReturned) {
+        super(ID, name, address, phone, rentals, date, LevelOfServices.Guest, username, password,numReturned);
     }
 
     public void setPromoteReady(boolean ready){

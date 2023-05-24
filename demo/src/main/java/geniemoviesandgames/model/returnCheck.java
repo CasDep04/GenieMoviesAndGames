@@ -51,11 +51,11 @@ public class returnCheck {
 
         int compareValue = dateReturn.compareTo(LocalDate.now());
         if (compareValue > 0) {
-            System.out.println("You are late");
-            setUserDeadline(deadLine.LATE);
-        } else if (compareValue < 0) {
             System.out.println("You are early");
             setUserDeadline(deadLine.EARLY);
+        } else if (compareValue < 0) {
+            System.out.println("You are late");
+            setUserDeadline(deadLine.LATE);
         } else {
             System.out.println("You are just on time");
             setUserDeadline(deadLine.ON_TIME);

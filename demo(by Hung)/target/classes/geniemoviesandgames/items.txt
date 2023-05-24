@@ -1,4 +1,0 @@
-I003-1992,Alpha Dog,Record,2-day,4,1.99,Action
-I001-2001,Medal of Honour,Game,2-day,4,3.99
-I003-2016,Infinity War,Record,2-day,1,6.4,Action
-I004-1999,Rat Race,DVD,2-day,5,1.99,Horror

@@ -38,8 +38,8 @@ public class VipAccount extends account{
     public void setPoints(int Points) {
         this.Points = Points;
     }
-    public VipAccount(String ID,String name, String address,String phone,ArrayList<item> rentals,ArrayList<LocalDate> date,String username,String password){
-        super(ID, name, address, phone, rentals,date,LevelOfServices.VIP, username, password);
+    public VipAccount(String ID,String name, String address,String phone,ArrayList<item> rentals,ArrayList<LocalDate> date,String username,String password,int numReturned){
+        super(ID, name, address, phone, rentals,date,LevelOfServices.VIP, username, password,numReturned);
     }
 
     @Override
@@ -69,16 +69,19 @@ public class VipAccount extends account{
     }
 
     @Override
-    public double accReturnItem(item itemIn){
+    public void accReturnItem(item itemIn){
+        
+        if(listOfRentals.contains(itemIn)){
 
-        listOfRentals.remove(itemIn);
-        listOfDate.remove(listOfRentals.indexOf(itemIn));
-        itemReturned+=1;
-        Points+=PointsEachReturn;
-        System.out.println("Congratulations ! You earned 10 reward points !");
-        if(Points == PointsForfreeRent){
-            freeRent++;
+            listOfRentals.remove(itemIn);
+            listOfDate.remove(listOfRentals.indexOf(itemIn)+1);
+            itemReturned+=1;
+            Points+=PointsEachReturn;
+            System.out.println("Congratulations ! You earned 10 reward points !");
+            if(Points == PointsForfreeRent){
+                freeRent++;
+            }
         }
-        return itemIn.getFees();
     }
+
 }

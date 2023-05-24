@@ -4,49 +4,60 @@ package geniemoviesandgames.backend;
 import geniemoviesandgames.model.product.item;
 import geniemoviesandgames.model.product.item.LoanType;
 import geniemoviesandgames.model.user.VipAccount;
+import geniemoviesandgames.model.user.account;
 import geniemoviesandgames.model.user.guestAccount;
 import geniemoviesandgames.model.user.regularAccount;
 
 public class borrowing {
 
-    public borrowing(guestAccount accIn, item itemsToBorrow) {
-        guestAccount accOut = accIn;
-        if (accOut.getItemBorrow() + 1 <= 2) {
+    public static account accBorrow(account accIn, item itemsToBorrow) {
+        
+        if (accIn instanceof guestAccount){
+            guestAccount accOut = (guestAccount) accIn;
             if (itemsToBorrow.getLoantype() == LoanType.TWO_DAY) {
                 System.out.println("Guest account cannot borrow 2-day items.");
+                return null;
+            }else if(accOut.getItemBorrow() + 1 > 2){
+                System.out.println("Guest account can only rent a maximum of 2 items at a time.");
+                return null;
             }
+
             if (itemsToBorrow.getStock() > 0) {
                 itemsToBorrow.borrowItem();
                 accOut.accBorrowItem(itemsToBorrow);
                 mainSystem.updateAccount(accIn, accOut);
+                return accOut;
             } else {
                 System.out.println("Item " + itemsToBorrow.getTitle() + " is out of stock.");
+                return null;
             }
-        } else {
-            System.out.println("Guest account can only rent a maximum of 2 items at a time.");
-        }
+        } else if(accIn instanceof regularAccount){
+            regularAccount accOut = (regularAccount) accIn;
+
+            if (itemsToBorrow.getStock() > 0) {
+                itemsToBorrow.borrowItem();
+                accOut.accBorrowItem(itemsToBorrow);
+                mainSystem.updateAccount(accIn, accOut);
+                return accOut;
+            } else {
+                System.out.println("Item " + itemsToBorrow.getTitle() + " is out of stock.");
+                return null;
+            }
+        }else {
+            VipAccount accOut = (VipAccount) accIn;
+
+            if (itemsToBorrow.getStock() > 0) {
+                itemsToBorrow.borrowItem();
+                accOut.accBorrowItem(itemsToBorrow);
+                mainSystem.updateAccount(accIn, accOut);
+                return accOut;
+            } else {
+                System.out.println("Item " + itemsToBorrow.getTitle() + " is out of stock.");
+                return null;
+            }
+        } 
+
     }
 
-    public borrowing(regularAccount accIn, item itemsToBorrow) {
-        regularAccount accOut = accIn;
-        if (itemsToBorrow.getStock() > 0) {
-            itemsToBorrow.borrowItem();
-            accOut.accBorrowItem(itemsToBorrow);
-            mainSystem.updateAccount(accIn, accOut);
-        } else {
-            System.out.println("Item " + itemsToBorrow.getID() + " is out of stock.");
-        }
-    }
-
-    public borrowing(VipAccount accIn, item itemsToBorrow) {
-        VipAccount accOut = accIn;
-        if (itemsToBorrow.getStock() > 0) {
-            itemsToBorrow.borrowItem();
-            accOut.accBorrowItem(itemsToBorrow);
-            mainSystem.updateAccount(accIn, accOut);
-        } else {
-            System.out.println("Item " + itemsToBorrow.getID() + " is out of stock.");
-        }
-    }
-    
 }
+

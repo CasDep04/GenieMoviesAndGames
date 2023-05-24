@@ -17,6 +17,7 @@ public class App extends Application {
 
     protected static Scene scene;
     protected static Stage oldStage;
+
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"));
@@ -34,11 +35,12 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("screen_design/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
     @Override
     public void stop() throws Exception {
         // Perform any necessary cleanup or save operations here
-        /* mainSystem.saveItemsToFile();
-        mainSystem.saveAccountsToFile(); */
+        mainSystem.saveItemsToFile();
+        mainSystem.saveAccountsToFile();
         System.out.println("Application stopped");
     }
 

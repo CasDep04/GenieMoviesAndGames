@@ -10,8 +10,8 @@ public class regularAccount extends account {
     protected boolean promoteReady = false;
 
     public regularAccount(String ID, String name, String address, String phone, ArrayList<item> rentals,
-            ArrayList<LocalDate> date, String username, String password) {
-        super(ID, name, address, phone, rentals, date, LevelOfServices.Regular, username, password);
+            ArrayList<LocalDate> date, String username, String password,int numReturned) {
+        super(ID, name, address, phone, rentals, date, LevelOfServices.Regular, username, password,numReturned);
     }
 
     public void setPromoteReady(boolean ready){

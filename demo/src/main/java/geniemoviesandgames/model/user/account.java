@@ -160,7 +160,7 @@ abstract public class account {
     }
 
     public account(String ID, String name, String address, String phone, ArrayList<item> rentals,ArrayList<LocalDate> date, LevelOfServices services,
-            String username, String password) {
+            String username, String password,int numReturned) {
         setAddress(address);
         setFullname(name);
         setID(ID);
@@ -168,6 +168,8 @@ abstract public class account {
         setPhone(phone);
         setUsername(username);
         setLevelOfServices(services);
+        setItemBorrow(rentals.size());
+        setItemReturned(numReturned);
         if (rentals != null) {
             setListOfRentals(rentals);
         }
@@ -234,12 +236,13 @@ abstract public class account {
         System.out.println("add successfully");
     }
 
-    public double accReturnItem(item itemIn){
+    public void accReturnItem(item itemIn){
+        if(listOfRentals.contains(itemIn)){
 
-        listOfRentals.remove(itemIn);
-        listOfDate.remove(listOfRentals.indexOf(itemIn));
-        itemReturned+=1;
-        return itemIn.getFees();
+            listOfRentals.remove(itemIn);
+            listOfDate.remove(listOfRentals.indexOf(itemIn)+1);
+            itemReturned+=1;
+        }
     }
 
 

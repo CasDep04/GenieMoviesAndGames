@@ -142,6 +142,7 @@ public class mainSystem {
             br1 = new BufferedReader(customerFile);
             String line;
             String[] fields;
+            int numReturned=0;
             String id = null, name = null, address = null, username = null, password = null, phone = null,itemOwnID=null;
             LevelOfServices services = null;
             ArrayList<item> itemOwn = new ArrayList<>();
@@ -155,17 +156,17 @@ public class mainSystem {
                     if (services != null) {
                         switch (services) {
                             case VIP:
-                                VipAccount v1 = new VipAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password);
+                                VipAccount v1 = new VipAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password,numReturned);
                                 mainSystem.addAccount(v1);
                                 break;
                             case Guest:
                                 guestAccount g1 = new guestAccount(id, name, address, phone, itemOwn,itemOwnDate, username,
-                                        password);
+                                        password,numReturned);
                                 mainSystem.addAccount(g1);
                                 break;
                             case Regular:
                                 regularAccount r1 = new regularAccount(id, name, address, phone, itemOwn,itemOwnDate, username,
-                                        password);
+                                        password,numReturned);
                                 mainSystem.addAccount(r1);
                                 break;
                         }
@@ -180,6 +181,7 @@ public class mainSystem {
                     services = LevelOfServices.valueOf(fields[5]);
                     username = fields[6];
                     password = fields[7];
+                    numReturned = Integer.parseInt(fields[8]);
                     if (fields[4] == "0") {
                         itemOwn = null;
                     }
@@ -194,15 +196,15 @@ public class mainSystem {
             }
             switch (services) {
                 case VIP:
-                    VipAccount v1 = new VipAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password);
+                    VipAccount v1 = new VipAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password,numReturned);
                     mainSystem.addAccount(v1);
                     break;
                 case Guest:
-                    guestAccount g1 = new guestAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password);
+                    guestAccount g1 = new guestAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password,numReturned);
                     mainSystem.addAccount(g1);
                     break;
                     case Regular:
-                    regularAccount r1 = new regularAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password);
+                    regularAccount r1 = new regularAccount(id, name, address, phone, itemOwn,itemOwnDate, username, password,numReturned);
                     mainSystem.addAccount(r1);
                     break;
                 default:
@@ -220,7 +222,7 @@ public class mainSystem {
                     + ","
                     + accIn.getPhone() + "," + accIn.getListOfRentals().size() + ","
                     + accIn.getLevelOfServices() + "," + accIn.getUsername() + ","
-                    + accIn.getPassword();
+                    + accIn.getPassword()+ ","+accIn.getItemReturned();
             for (int i = 0; i < accIn.getListOfRentals().size(); i++) {
                 phrase = phrase + "\n" + accIn.getListOfRentals().get(i).getID()+","+accIn.getListOfDates().get(i);
             }
@@ -229,7 +231,7 @@ public class mainSystem {
                     + ","
                     + accIn.getPhone() + "," + "0" + ","
                     + accIn.getLevelOfServices() + "," + accIn.getUsername() + ","
-                    + accIn.getPassword();
+                    + accIn.getPassword()+ ","+accIn.getItemReturned();
         }
         return phrase;
     }
