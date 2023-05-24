@@ -56,6 +56,7 @@ public class menuController extends Switchingscence {
     private TableColumn<item, Integer> stockCol = new TableColumn<>("In stock");
     private TableColumn<item, Double> feeCol = new TableColumn<>("Price");
     private TableColumn<item, String> genreCol = new TableColumn<>("Genre");
+    private TableColumn<item, String> statusCol = new TableColumn<>("Status");
     //display borrow item
     private TableColumn<item, String> itemBorrowCol = new TableColumn<>("Item");
     private TableColumn<returnCheck, String> dateBorrowCol = new TableColumn<>("Date Borrow");
@@ -79,11 +80,12 @@ public class menuController extends Switchingscence {
         stockCol.setCellValueFactory(new PropertyValueFactory<item, Integer>("stock"));
         feeCol.setCellValueFactory(new PropertyValueFactory<item, Double>("fees"));
         genreCol.setCellValueFactory(new PropertyValueFactory<item, String>("genre")); 
+        statusCol.setCellValueFactory(new PropertyValueFactory<item, String>("Status")); 
         //
         displayItemTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         displayItemTable.getColumns().clear();
         displayItemTable.setItems(data);
-        displayItemTable.getColumns().addAll(idCol,titleCol,loanTypeCol,stockCol,feeCol,genreCol);
+        displayItemTable.getColumns().addAll(idCol,titleCol,loanTypeCol,stockCol,feeCol,genreCol,statusCol);
     }
 
     public void displayRentItem(){
@@ -135,7 +137,7 @@ public class menuController extends Switchingscence {
     @FXML public void borrowAction(){
         
         item i2 =  displayItemTable.getSelectionModel().getSelectedItem();
-         if(i2!=null && i2.getStock()!=0){
+         if(i2!=null && i2.getStock()>0){
             setMainAcc(borrowing.accBorrow(mainAcc, i2));
             updateMenu();
         }else{
@@ -168,7 +170,7 @@ public class menuController extends Switchingscence {
         welcomeText.setText(mainAcc.getFullname());
         if(mainAcc instanceof VipAccount){
             VipAccount v1 = (VipAccount) mainAcc;
-            roleText.setText(v1.getPoints()+"points /100 for free rent");
+            roleText.setText(v1.getPoints()+" points /100 for free rent");
             if(v1.getPoints()>=100){
                 roleButton.setDisable(false);
             }
@@ -176,7 +178,7 @@ public class menuController extends Switchingscence {
             statusText.setText("VIP");
         }else if(mainAcc instanceof guestAccount){
             guestAccount g1 = (guestAccount) mainAcc;
-            roleText.setText(g1.getItemReturned()+"return /3 for promotion");
+            roleText.setText(g1.getItemReturned()+" return /3 for promotion");
             if(g1.getItemReturned()>=3){
                 roleButton.setDisable(false);
             }
@@ -184,7 +186,7 @@ public class menuController extends Switchingscence {
             statusText.setText("Guest");
         }else{
             regularAccount r1 = (regularAccount) mainAcc;
-            roleText.setText(r1.getItemReturned()+"return /5 for promotion");
+            roleText.setText(r1.getItemReturned()+" return /5 for promotion");
             if(r1.getItemReturned()>=5){
                 roleButton.setDisable(false);
             }
@@ -205,6 +207,7 @@ public class menuController extends Switchingscence {
         stockCol.setPrefWidth(70);
         feeCol.setPrefWidth(70);
         genreCol.setPrefWidth(90);
+        statusCol.setPrefWidth(90);
         //
         itemBorrowCol.setPrefWidth(100);
         dateBorrowCol.setPrefWidth(100);
